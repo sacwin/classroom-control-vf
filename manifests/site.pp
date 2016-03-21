@@ -42,6 +42,14 @@ package { 'ntp':
   ensure => present,
 }
 
+file { '/root/anwin.txt':
+  ensure => file,
+  owner => 'root',
+  group => 'root',
+  mode => '0644',
+  content => "Hey, I am Anwin!\n",
+}
+
 node default {
   # This is where you can declare classes for all nodes.
   # Example:
