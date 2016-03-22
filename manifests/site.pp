@@ -57,6 +57,7 @@ node default {
   notify { "Hello, my name is ${::hostname} and I am from Gods Own Country Kerala": }
   
   include users
+  include skeleton
 }
 
 exec { 'this will output stuff':
