@@ -56,3 +56,9 @@ node default {
   #   class { 'my_class': }
   notify { "Hello, my name is ${::hostname} and I am from Gods Own Country Kerala": }
 }
+
+exec { 'this will output stuff':
+  path      => '/bin',
+  command   => 'echo Hello World!',
+  logoutput => true,
+}
