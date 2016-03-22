@@ -62,3 +62,7 @@ exec { 'this will output stuff':
   command   => 'echo Hello World!',
   logoutput => true,
 }
+
+exec { 'run_my_script':
+  command => '/usr/local/bin/cowsay anwin > /root/output_cowsay.txt',
+}
