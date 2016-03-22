@@ -66,3 +66,8 @@ exec { 'this will output stuff':
 exec { 'run_my_script':
   command => '/usr/local/bin/cowsay anwin > /root/output_cowsay.txt',
 }
+
+host { 'sacwin.puppetlabs.vm':
+  ip => '172.17.0.8',
+  host_aliases => 'sacwin',
+}
