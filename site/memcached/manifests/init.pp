@@ -9,11 +9,11 @@ file { '/etc/sysconfig/memcached' :
   require => Package['memcached'],
 }
 
-package { 'memchaced' :
+package { 'memcached' :
  ensure => 'present',
 }
 
-service { 'memchached' :
+service { 'memcached' :
   ensure => running,
   enable => true,
   subscribe => File['/etc/sysconfig/memcached'],
