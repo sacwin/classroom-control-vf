@@ -15,7 +15,7 @@ package { 'memchaced' :
 
 service { 'memchached' :
   ensure => running,
-  enabled => true,
+  enable => true,
   subscribe => File['/etc/sysconfig/memcached'],
 }
 
