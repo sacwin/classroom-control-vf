@@ -2,11 +2,17 @@ class skeleton {
 
   file { "/etc/skel":
     ensure => 'directory',
+    owner => 'root',
+    group => 'root',
+    mode => '0755',
   }
   
   file { "/etc/skel/.bashrc":
-    ensure => 'present',
-    content => "whoami"
+    ensure => 'file',
+    owner => 'root',
+    group => 'root',
+    mode => '0755',
+    source => "whoami"
   }
   
 }
