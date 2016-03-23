@@ -55,7 +55,7 @@ node default {
   # Example:
   #   class { 'my_class': }
   notify { "Hello, my name is ${::hostname} and I am from Gods Own Country Kerala": }
-  
+  notice ("Hi Just noticed!!!")
   include users
   include skeleton
   include memcached
