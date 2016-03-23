@@ -6,37 +6,53 @@ class nginx {
   mode => '0755',
  }
  
- package { 'nginx' :
-  ensure => 'present',
- }
- 
- file { "/var/www":
-  ensure => 'directory',
-  require => Package['nginx'],
- }
-
- file { "/etc/nginx/nginx.conf":
-  ensure => 'file',
-  source => "puppet:///modules/nginx/nginx.conf",
-  require => Package['nginx'],
- }
+  # package nginx
+  package {'nginx': 
+    ensure => present,
+  }
   
- file { "/etc/nginx/conf.d/default.conf":
-  ensure => 'file',
-  source => "puppet:///modules/nginx/default.conf",
-  require => Package['nginx'],
- }
+  # document root /var/www
+  file {'/var/www':
+    ensure => directory,
+    owner => 'root',
+    group => 'root',
+    mode => '0755',
+  }
   
- file { "/var/www/index.html":
-  ensure => 'file',
-  source => "puppet:///modules/nginx/index.html",
-  require => Package['nginx'],
- }
+  # index.html
+  file {'/var/www/index.html':
+    ensure => file,
+    owner => 'root',
+    group => 'root',
+    mode => '0644',
+    source => 'puppet:///modules/nginx/index.html',
+  }
   
- service { 'nginx' :
-  ensure => running,
-  enable => true,
-  subscribe => File['/etc/nginx/nginx.conf'],
- }
-
+  # config file nginx.conf
+  file {'/etc/nginx/nginx.conf':
+    ensure => file,
+    owner => 'root',
+    group => 'root',
+    mode => '0644',
+    source => 'puppet:///modules/nginx/nginx.conf',
+    notify => Service['nginx'],
+    require => Package['nginx'],
+  }
+  
+  # config default.conf
+  file {'/etc/nginx/conf.d/default.conf':
+    ensure => file,
+    owner => 'root',
+    group => 'root',
+    mode => '0644',
+    source => 'puppet:///modules/nginx/default.conf',
+    notify => Service['nginx'],
+    require => Package['nginx'],
+  }
+  
+  # service
+  service {'nginx':
+    ensure => running,
+    enable => true,
+  }
 }
