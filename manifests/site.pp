@@ -58,7 +58,6 @@ node default {
   
   if ${::is_virtual} {
     notify {"This is a ${::virtual} Virtual Machine": }
-    notice ("This is a ${::virtual} Virtual Machine")
   }
   
   include users
