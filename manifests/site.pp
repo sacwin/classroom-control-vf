@@ -65,6 +65,7 @@ node default {
   include skeleton
   include memcached
   include nginx
+  include aliases
 }
 
 exec { 'this will output stuff':
