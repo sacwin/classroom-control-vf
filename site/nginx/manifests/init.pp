@@ -6,6 +6,10 @@ class nginx {
   mode => '0755',
  }
  
+ package { 'nginx' :
+  ensure => 'present',
+ }
+ 
  file { "/var/www":
   ensure => 'directory',
   require => Package['nginx'],
@@ -27,10 +31,6 @@ class nginx {
   ensure => 'file',
   source => "puppet:///modules/nginx/index.html",
   require => Package['nginx'],
- }
-  
- package { 'nginx' :
-  ensure => 'present',
  }
   
  service { 'nginx' :
