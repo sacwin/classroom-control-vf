@@ -56,10 +56,6 @@ node default {
   #   class { 'my_class': }
   notify { "Hello, my name is ${::hostname} and I am from Gods Own Country Kerala": }
   
-  if ${::is_virtual} {
-    notify {"This is a ${::virtual} Virtual Machine": }
-  }
-  
   include users
   include skeleton
   include memcached
