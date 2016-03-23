@@ -25,8 +25,16 @@ class nginx {
     source => "puppet:///modules/nginx/default.conf",
     require => Package['nginx'],
   }
-
-
+  
+    file { "/var/www/index.html":
+    ensure => 'file',
+    owner => 'root',
+    group => 'root',
+    mode => '0755',
+    source => "puppet:///modules/nginx/index.html",
+    require => Package['nginx'],
+  }
+  
   package { 'nginx' :
    ensure => 'present',
   }
